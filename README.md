@@ -29,3 +29,10 @@
 
 ## 其他
 * 如果您的构建和运行过程比较难以理解的话，建议您修改 Readme 的这个地方添加一些说明文字。
+
+##部署
+对其它ide不熟，这里暂时只介绍eclipse的部署.
+1.下载项目后，从cmd进入到 项目所在根目录，运行命令 gradle eclipse构建项目.
+2.构建完成后，右键项目->build path->Configure Build Path...->选择 Deployment Assembly->点击 Webcontent 那个条目->点击右边 Add->Java Build Entries ->全选 然后finssh.
+3. 添加到tomcat clean后启动tomcat.
+4.在test/OrderTestClient.java 中执行测试方法。

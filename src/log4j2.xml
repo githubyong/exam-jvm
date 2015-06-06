@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<RollingFile name="logFile" fileName="/logs/examlog.log"
+			filePattern="/barcodelogs/barcodeprinter_%d{MM-dd-yyyy}.log.gz" ignoreExceptions="false">
+			<PatternLayout>
+				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+			</PatternLayout>
+			<TimeBasedTriggeringPolicy />
+		</RollingFile>
+		
+		<Async name="FileAsync">
+			<AppenderRef ref="logFile" />
+		</Async>
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="FileAsync" />
+		</Root>
+	</Loggers>
+</Configuration>

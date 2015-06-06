@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+jar {
+    baseName = 'gs-relational-data-access'
+    baseName = 'gs-serving-web-content'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.17'
+	compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.17'
+	compile 'org.apache.logging.log4j:log4j-web:2.1'
+	compile 'org.apache.commons:commons-lang3:3.3.2'
+	compile 'junit:junit:4.12'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
+task getjar(overwrite: true,dependsOn: jar) <<{  
+    println "move jar file : ${project.name}-${version}.jar"  
+    copy{  
+        from 'build/libs/'  
+        into "$targetDir/WebContent/WEB-INF/lib"  
+    }  
+}  
